@@ -10,24 +10,31 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-//sample get from net ninja
-  // void getData() async {
-  //   var response = await get('https://jsonplaceholder.typicode.com/todos/1');
-  //   print(response.body);
-  // }
-
-  //sample get from flutter documentation
-  void getData() async {
-    final response = await http
-        .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
+  //sample get request from flutter documentation.
+  void getTime() async {
+    final response = await http.get(
+      Uri.parse('https://worldtimeapi.org/api/timezone/Asia/Manila'),
+    );
     Map data = jsonDecode(response.body);
-    print(data);
+    // print(data);
+
+    //Get properties of ther data.
+    String datetime = data["datetime"];
+    String offset = data["utc_offset"].substring(1, 3);
+
+    // print(datetime);
+    // print(offset);
+
+    //Create Datetime object
+    DateTime now = DateTime.parse(datetime);
+    now = now.add(Duration(hours: int.parse(offset)));
+    print(now);
   }
 
   @override
   void initState() {
     super.initState();
-    getData();
+    getTime();
   }
 
   @override
