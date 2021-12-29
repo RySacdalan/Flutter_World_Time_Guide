@@ -10,7 +10,6 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-<<<<<<< HEAD
   //first value of string
   String time = "Loading";
 
@@ -28,20 +27,6 @@ class _LoadingState extends State<Loading> {
     setState(() {
       time = instance.time;
     });
-=======
-  //
-  Future<void> setupWorldTime() async {
-    //We have here the instance of the WorldTime class.
-    WorldTime instance = WorldTime(
-        location: "Berlin", flag: "germany.png", url: "Europe/Berlin");
-
-    //We get the instance here, then run the getTime functime to run and set the properties
-    //Run the getTime(), make request and get the data to the endpoint.
-    //ALWAYS use await inside async functions.
-    await instance.getTime();
-    // ignore: avoid_print
-    print(instance.time);
->>>>>>> main
   }
 
   //when the widget runs, we run the initState() once.
@@ -55,16 +40,10 @@ class _LoadingState extends State<Loading> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(50),
       child: Text(time),
     ));
-=======
-    return const Scaffold(
-      body: Text("Loading screen"),
-    );
->>>>>>> main
   }
 }
