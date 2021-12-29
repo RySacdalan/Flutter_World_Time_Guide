@@ -12,25 +12,30 @@ class WorldTime {
   //sample get request from flutter documentation.
   //Future is a placeholder value. Return void iff the async is complete.
   Future<void> getTime() async {
-    final response = await http.get(
-      Uri.parse('https://worldtimeapi.org/api/timezone/$url'),
-    );
+    try {
+      final response = await http.get(
+        Uri.parse('https://worldtimeapi.org/api/timezone/$url'),
+      );
 
-    Map data = jsonDecode(response.body);
-    // print(data);
+      Map data = jsonDecode(response.body);
+      // print(data);
 
-    //Get properties of ther data.
-    String datetime = data["datetime"];
-    String offset = data["utc_offset"].substring(1, 3);
+      //Get properties of ther data.
+      String datetime = data["datetime"];
+      String offset = data["utc_offset"].substring(1, 3);
 
-    // print(datetime);
-    // print(offset);
+      // print(datetime);
+      // print(offset);
 
-    //Create Datetime object
-    DateTime now = DateTime.parse(datetime);
-    now = now.add(Duration(hours: int.parse(offset)));
+      //Create Datetime object
+      DateTime now = DateTime.parse(datetime);
+      now = now.add(Duration(hours: int.parse(offset)));
 
-    //set the time property
-    time = now.toString();
+      //set the time property
+      time = now.toString();
+    } catch (e) {
+      print("Caught error: $e");
+      time = "Caught error: Could not get the data";
+    }
   }
 }
