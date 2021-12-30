@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_world_time/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 //When the screen first load, this screen/class will run first.
 class Loading extends StatefulWidget {
@@ -41,9 +42,13 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-        body: Padding(
-      padding: EdgeInsets.all(50),
-      child: Text("Loading"),
-    ));
+      backgroundColor: Colors.red,
+      body: Center(
+        child: SpinKitFadingCube(
+          color: Colors.white,
+          size: 80.0,
+        ),
+      ),
+    );
   }
 }
